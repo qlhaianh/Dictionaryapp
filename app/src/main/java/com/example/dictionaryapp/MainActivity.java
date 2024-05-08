@@ -3,18 +3,13 @@ package com.example.dictionaryapp;
 import android.os.Bundle;
 
 import android.view.MenuItem;
-import android.view.View;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
+
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -27,8 +22,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     MenuItem menuSetting;
 
-    DictBlankFragment dictFragment;
-    saveword_fragment savewordFragment;
+    DictionaryFragment dictFragment;
+    YourWordsFragment yourwordsFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,10 +39,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        dictFragment = new DictBlankFragment();
-        savewordFragment = new saveword_fragment();
+        dictFragment = new DictionaryFragment();
+        yourwordsFragment = new YourWordsFragment();
         goToFragment(dictFragment,true);
 
+        dictFragment.setOnFragmentListener(new FragmentListener() {
+            @Override
+            public void onItemClick(String value) {
+                goToFragment(DetailFragment.getNewInstance(value),false);
+            }
+        });
+
+        yourwordsFragment.setOnFragmentListener(new FragmentListener() {
+            @Override
+            public void onItemClick(String value) {
+                goToFragment(DetailFragment.getNewInstance(value),false);
+            }
+        });
     }
 
     public void onBackPressed() {
@@ -91,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
         if(id == R.id.action_save){
-            goToFragment(savewordFragment,false);
+            goToFragment(yourwordsFragment,false);
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

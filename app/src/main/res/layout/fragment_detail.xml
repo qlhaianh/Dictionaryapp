@@ -3,15 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".saveword_fragment"
-    android:background="@color/colorAccent">
+    tools:context=".DetailFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/detail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/save_word_fragment"
-        android:gravity="center"
-        android:textSize="20sp"/>
+        android:text="@string/detail_fragment" />
 
 </FrameLayout>

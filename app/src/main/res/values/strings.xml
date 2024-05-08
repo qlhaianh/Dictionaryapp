@@ -1,18 +1,9 @@
 <resources>
-    <string name="app_name">Dictionary</string>
+    <string name="app_name">DoAnDD</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
-    <string name="menu_tools">Tools</string>
-    <string name="menu_share">Share</string>
-    <string name="menu_send">Send</string>
 
     <string name="nav_change_language">Viet - Anh Dictionary</string>
     <string name="nav_save">Your words</string>
@@ -21,13 +12,14 @@
     <string name="nav_rate">Rate</string>
     <string name="nav_share">Share</string>
     <string name="nav_help">Help</string>
-
     <string name="en_vi">EN - VI</string>
     <string name="vi_en">VI - EN</string>
 
-
     <string name="save_word_fragment">YOUR WORDS</string>
     <string name="dict_fragment">DICT FRAGMENT</string>
+    <string name="detail_fragment">DETAIL FRAGMENT</string>
+
+    <string name="btn_go_to_detail">GO TO DETAIL</string>
 
 
 </resources>
