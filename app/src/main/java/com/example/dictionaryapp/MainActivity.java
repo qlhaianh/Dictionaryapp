@@ -2,6 +2,8 @@ package com.example.dictionaryapp;
 
 import android.os.Bundle;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MenuItem;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -18,6 +20,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.widget.EditText;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     MenuItem menuSetting;
@@ -56,6 +60,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 goToFragment(DetailFragment.getNewInstance(value),false);
             }
         });
+
+        EditText edit_search = findViewById(R.id.edit_search);
+        edit_search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                dictFragment.filterValue(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
     public void onBackPressed() {
@@ -76,6 +98,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         String id = Global.getState(this,"dic_type");
         if(id!=null)
             onOptionsItemSelected(menu.findItem(Integer.valueOf(id)));
+        else
+            DB.getData(R.id.action_en_vi);
         return true;
     }
 
@@ -84,12 +108,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         Global.saveState(this,"dic_type",String.valueOf(id));
+        String[] source =DB.getData(id);
         if(id==R.id.action_en_vi)
         {
+            dictFragment.resetDataSource(source);
             menuSetting.setIcon(getDrawable(R.drawable.uk64));
         }
         else if(id==R.id.action_vi_en)
         {
+            dictFragment.resetDataSource(source);
             menuSetting.setIcon(getDrawable(R.drawable.vn64));
         }
         return super.onOptionsItemSelected(item);
